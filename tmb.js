@@ -112,7 +112,7 @@ $(document).ready(function() {
 	}
 
 	function Meteorite(left, phase, name, game, speed) {
-		this.size = 7
+		this.size = 10
 		this.x = random(this.size * 2, Math.floor(w/2 - this.size * 2));
 		if ( !left ) {
 			this.x += w / 2;
@@ -246,7 +246,7 @@ $(document).ready(function() {
 		this.meteorites = [];
 		this.counter = new Score();
 		this.not_over = true;
-		this.speed = 3000;
+		this.speed = 1700;
 		this.newgame_txt;
 
 		this.increment = function() {
@@ -269,9 +269,10 @@ $(document).ready(function() {
 			} else {
 				phase = "gibbous";
 			}
-			fall_speed = 4 + 5 - (5 * Math.pow(0.98, this.meteorite_count));
+			fall_speed = 3 + 5 - (5 * Math.pow(0.97, this.meteorite_count));
+			console.log("falling at: " + fall_speed);
 			if ( this.meteorite_count % 5 === 0 ) {
-				this.speed *= 0.9
+				this.speed *= 0.94
 				this.change_speed(this.speed);
 			}
 			name = "m" + this.meteorite_count;
