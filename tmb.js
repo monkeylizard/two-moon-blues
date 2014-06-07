@@ -348,6 +348,15 @@ $(document).ready(function() {
 		}
 	});
 
+		$(document).on('click', function() {
+		if ( game.not_over ) {
+			game.paddles.swap();
+		} else {
+			game.blank();
+			game = new Game;
+		}
+	});
+
 });
 
 
