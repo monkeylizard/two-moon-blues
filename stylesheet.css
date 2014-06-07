@@ -1,0 +1,16 @@
+body {
+	background-color: #271D73;
+}
+
+h1 {
+	color: #FFFD8C;
+}
+
+.container {
+	background-image:url('stars.png');
+}
+
+#game {
+	background-color: rgba(51, 40, 44, 0.8);
+	border-radius: 5px;
+}
