@@ -1,14 +1,14 @@
 $(document).ready(function() {
 	var pad = 50;
 	var h = $(window).height() - pad * 2;
-	var w = h * 0.75;
+	var w = Math.floor($("#game").width() - 30);
 
 	var svg = d3.select("#game")
 		.append("svg")
 		.attr("height", h)
 		.attr("width", w)
-		.attr("id", "svgMain")
-		.style("background-color", "#B2E5DC");
+		.attr("id", "svgMain");
+//		.style("background-color", "rgba(51, 40, 44, 0.5)");
 
 	// make the paddles
 
@@ -16,10 +16,10 @@ $(document).ready(function() {
 		name = phase + "_paddle";
 		if ( phase === "crescent" ) {
 			x = 2;
-			color = "white";
+			color = "#84E888";
 		} else {
 			x = w / 2 + 2;
-			color = "black";
+			color = "#8F3D8C";
 		}
 		y = h - 50;
 		var body = svg.selectAll(name)
@@ -93,9 +93,9 @@ $(document).ready(function() {
 
 	var make_meteorite_body = function(left, phase, name, x, y, size) {
 		if ( phase === "crescent") {
-			color = "white";
+			img = "crescent.png";
 		} else {
-			color = "black";
+			img = "gibbous.png";
 		}
 		if ( !left ) {
 			x += w/2;
@@ -103,19 +103,20 @@ $(document).ready(function() {
 		body = svg.selectAll(name)
 			.data([true])
 			.enter()
-			.append("circle")
-			.attr("r", size)
-			.attr("cx", x)
-			.attr("cy", -10)
-			.attr("fill", color);
+			.append("image")
+			.attr("xlink:href", img)
+			.attr("height", size)
+			.attr("width", size)
+			.attr("x", x)
+			.attr("y", -10);
 		return body;
 	}
 
 	function Meteorite(left, phase, name, game, speed) {
-		this.size = 10
+		this.size = 50
 		this.x = random(this.size * 2, Math.floor(w/2 - this.size * 2));
 		if ( !left ) {
-			this.x += w / 2;
+			this.x += Math.floor(w / 2);
 		}
 		this.y = -10;
 		this.dx = 0;
@@ -132,8 +133,8 @@ $(document).ready(function() {
 			//console.log("differentials", this.dx, this.dy);
 			this.body.transition()
 				.duration(30)
-				.attr("cx", this.x)
-				.attr("cy", this.y);
+				.attr("x", this.x)
+				.attr("y", this.y);
 		}
 		this.matches = function() {
 			if ( this.phase === "crescent" ) {
@@ -147,7 +148,7 @@ $(document).ready(function() {
 			meteorite.falling = true;
 			var fall_loop = setInterval( function() {
 				meteorite.update_position();
-				if ( meteorite.y >= h - 50 ) {
+				if ( meteorite.y >= h - 30 - meteorite.size) {
 					clearInterval(fall_loop);
 					meteorite.impact()
 				}
@@ -181,6 +182,7 @@ $(document).ready(function() {
 						.text("0")
 						.attr("x", 15)
 						.attr("y", 50)
+						.attr("fill", "#FFFD8C")
 						.attr("font-size", "3em");
 		return disp;
 	}
@@ -216,6 +218,7 @@ $(document).ready(function() {
 							.attr("text-anchor", "middle")
 							.attr("x", w/2)
 							.attr("y", h/2)
+							.attr("fill", "#FFFD8C");
 		}
 		this.kill_banner = function() {
 			this.banner.remove();
