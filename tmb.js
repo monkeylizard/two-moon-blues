@@ -29,7 +29,7 @@ $(document).ready(function() {
 
   $(document).on('keydown', move);
   $(document).on('click', move);
-  $(document).on('tap', move);
-  $(document).on('swipe', move);
+  $('#game').on('tap', move);
+  $('#game').on('swipe', move);
 
 });
