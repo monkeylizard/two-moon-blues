@@ -14,24 +14,22 @@ $(document).ready(function() {
 
   game = new Game;
 
-  $(document).on('keydown', function( e ) {
-    if ( game.not_over ) {
-      game.paddles.swap();
-    } else {
-      if ( e.which === 13 ) {
-        game.blank();
-        game = new Game;
-      }
-    }
-  });
+  reset = function () {
+    game.blank();
+    game = new Game;
+  }
 
-  $(document).on('click', function() {
+  move = function () {
     if ( game.not_over ) {
       game.paddles.swap();
     } else {
-      game.blank();
-      game = new Game;
+      reset();
     }
-  });
+  }
+
+  $(document).on('keydown', move);
+  $(document).on('click', move);
+  $('#game').on('tap', move);
+  $('#game').on('swipe', move);
 
 });
