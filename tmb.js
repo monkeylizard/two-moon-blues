@@ -33,7 +33,6 @@ $(document).ready(function() {
 
   $(document).on('keydown', move);
   $(document).on('click', move);
-  $('#svgMain').on('tap', move);
-  $('#svgMain').on('swipe', move);
+  $(document).on('touchstart', move);
 
 });
