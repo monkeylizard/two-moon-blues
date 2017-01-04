@@ -1,6 +1,14 @@
 $(document).ready(function() {
   window.pad = 50;
+
   window.h = $(window).height() - pad * 2;
+
+  if ( $(window).height() > $(window).width() ) {
+    window.h = window.h * 0.6;
+    window.meteorite_size = 120;
+  } else {
+    window.meteorite_size = 50;
+  }
 
   page_width = $(window).width() - pad * 2
   styled_width = Math.floor($('#game').width() - 30);
@@ -33,6 +41,6 @@ $(document).ready(function() {
 
   $(document).on('keydown', move);
   $(document).on('click', move);
-  $(document).on('touchstart', move);
+  $(document).on('touchstart', function (e) { e.preventDefault(); move() });
 
 });
