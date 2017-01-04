@@ -8,6 +8,7 @@ h1 {
 
 .container {
 	background-image:url('stars.png');
+	background-size: cover;
 }
 
 #game {

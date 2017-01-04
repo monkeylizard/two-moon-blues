@@ -1,7 +1,11 @@
 $(document).ready(function() {
   window.pad = 50;
   window.h = $(window).height() - pad * 2;
-  window.w = Math.floor($("#game").width() - 30);
+
+  page_width = $(window).width() - pad * 2
+  styled_width = Math.floor($('#game').width() - 30);
+
+  window.w = Math.min(page_width, styled_width);
   window.svg = d3.select("#game")
     .append("svg")
     .attr("height", h)
@@ -29,7 +33,7 @@ $(document).ready(function() {
 
   $(document).on('keydown', move);
   $(document).on('click', move);
-  $('#game').on('tap', move);
-  $('#game').on('swipe', move);
+  $('#svgMain').on('tap', move);
+  $('#svgMain').on('swipe', move);
 
 });
