@@ -33,7 +33,7 @@ $(document).ready(function() {
 
   $(document).on('keydown', move);
   $(document).on('click', move);
-  $('#game').on('tap', move);
-  $('#game').on('swipe', move);
+  $('#svgMain').on('tap', move);
+  $('#svgMain').on('swipe', move);
 
 });
