@@ -1,6 +1,6 @@
 function Meteorite(left, phase, name, game, speed) {
   this.set_up_meteorite = function(left, phase, name, game, speed) {
-    this.size = 50
+    this.size = window.meteorite_size
     this.x = random(this.size * 2, Math.floor(w/2 - this.size * 2));
     if ( !left ) {
       this.x += Math.floor(w / 2);
@@ -46,8 +46,8 @@ function Meteorite(left, phase, name, game, speed) {
       .enter()
       .append("image")
       .attr("xlink:href", img)
-      .attr("height", size)
-      .attr("width", size)
+      .attr("height", window.meteorite_size)
+      .attr("width", window.meteorite_size)
       .attr("x", x)
       .attr("y", -10);
     return body;
